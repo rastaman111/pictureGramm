@@ -25,6 +25,8 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var artistNameCell: UILabel!
     @IBOutlet weak var soundNameCell: UILabel!
+    @IBOutlet weak var topLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

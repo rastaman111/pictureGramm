@@ -41,6 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         do {
             let result = try PersistenceServce.contex.fetch(fetchRequest)
@@ -49,6 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }catch{
             print("Data didn not Retrieve")
         }
+        
         
         title = "Picturegram"
         
@@ -63,7 +65,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if let results = feed["results"] as? NSArray {
                         
                         self.listItems.removeAll()
-                        
+                        try PersistenceServce.contex.execute(NSBatchDeleteRequest(fetchRequest: NSFetchRequest(entityName: "Item")))
+                     
                         for i in results {
                             if let artworkUrlArray = i as? [String: AnyObject] {
                                 
@@ -74,7 +77,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName)
                                 self.array.append(arrayT)
                                 
-                                
                                 let item = Item(context: PersistenceServce.contex)
                                 item.artist = artistName
                                 item.sound = soundName
@@ -84,7 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 DF.dateFormat = "dd-MMMM-yyyy HH:mm"
                                 let dd = DF.string(from: self.date)
                                 item.date = dd
-                                print(item.date!)
+                                
                                 do {
                                     try PersistenceServce.contex.save()
                                     self.listItems.append(item)
@@ -95,7 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             }
                            
                         }
-                      
+                        
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -108,7 +110,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             }
         }.resume()
-       
        
     }
     
@@ -135,10 +136,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.artistNameCell.text = item.artist
             cell.soundNameCell.text = item.sound
             cell.imageViewCell.loadImageUsingCacheWithUrlString(item.image!)
+            cell.topLabel.text = "Топ \(indexPath.row + 1)"
         }else{
+            
             cell.imageViewCell.loadImageUsingCacheWithUrlString(self.array[indexPath.row].image)
             cell.artistNameCell.text = array[indexPath.row].artist
             cell.soundNameCell.text = array[indexPath.row].sound
+            cell.topLabel.text = "Топ \(indexPath.row + 1)"
         }
         
         cell.selectionStyle = .none

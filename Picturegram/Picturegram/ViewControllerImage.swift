@@ -8,14 +8,6 @@
 
 import UIKit
 
-
-
-//Все задания выполнены
-//Проблемма решена.
-//
-//
-
-
 class ViewControllerImage: UIViewController {
 
     @IBOutlet weak var imageDetail: UIImageView!
@@ -35,6 +27,4 @@ class ViewControllerImage: UIViewController {
         AlertDialog.showAlert("Дата скачивания:", message: "\(time)", viewController: self)
     }
     
-   
-
 }
