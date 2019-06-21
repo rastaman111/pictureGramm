@@ -79,7 +79,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 item.artist = artistName
                                 item.sound = soundName
                                 item.image = artworkUrl
-                                item.date = self.date
+                                
+                                let DF = DateFormatter()
+                                DF.dateFormat = "dd-MMMM-yyyy HH:mm"
+                                let dd = DF.string(from: self.date)
+                                item.date = dd
                                 print(item.date!)
                                 do {
                                     try PersistenceServce.contex.save()
@@ -153,12 +157,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                     detailVC.imageName = item.image!
                     detailVC.title = item.artist
-                    //detailVC.date = item.date!
+                    detailVC.time = item.date!
+                    
                 }else{
                     detailVC.imageName = array[indexPath.row].image
                     detailVC.title = array[indexPath.row].artist
-                    detailVC.date = date
                     
+                    let DF = DateFormatter()
+                    DF.dateFormat = "dd-MMMM-yyyy HH:mm"
+                    let dd = DF.string(from: date)
+                    detailVC.time = dd
                 }
             }
         }

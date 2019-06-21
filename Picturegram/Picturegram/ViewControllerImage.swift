@@ -11,8 +11,7 @@ import UIKit
 
 
 //Все задания выполнены
-//Одна только проблема, когда нет интернета(режим оффлайн) данные даты из CoreData не передаются на другой контроллер и поэтому происходит крах приложения
-//
+//Проблемма решена.
 //
 //
 
@@ -22,22 +21,18 @@ class ViewControllerImage: UIViewController {
     @IBOutlet weak var imageDetail: UIImageView!
     
     var imageName = ""
-    var date = Date()
+    var time = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         imageDetail.loadImageUsingCacheWithUrlString(imageName)
         
     }
     
     @IBAction func dateButton(_ sender: UIBarButtonItem) {
         
-        let DF = DateFormatter()
-        DF.dateFormat = "dd-MMMM-yyyy HH:mm"
-        let dd = DF.string(from: date)
-        
-        AlertDialog.showAlert("Дата скачивания:", message: "\(dd)", viewController: self)
+        AlertDialog.showAlert("Дата скачивания:", message: "\(time)", viewController: self)
     }
     
    
