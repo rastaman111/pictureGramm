@@ -9,38 +9,40 @@
 import UIKit
 import CoreData
 
-class UserImage {
-   
-    
-    var image: String!
-    var artist: String!
-    var sound: String!
-    
-    init(image: String, artist: String, sound: String) {
-        self.image = image
-        self.artist = artist
-        self.sound = sound
-    }
-    
-}
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var reachabilityIconView: UIView!
+
     var array: [UserImage] = []
-    
-    let defaults = UserDefaults.standard
     
     var listItems = [NSManagedObject]()
     
     let date = Date()
     
-    let urlString = "https://rss.itunes.apple.com/api/v1/ru/apple-music/top-songs/all/10/explicit.json"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Picturegram"
+        
+        UserInfoImage.forecast { (results: [UserImage]) in
+            for i in results {
+
+                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound)
+                self.array.append(arrayT)
+
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         do {
@@ -51,66 +53,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Data didn not Retrieve")
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: nil)
         
-        title = "Picturegram"
+        updateUserInterface()
         
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data {
-            do {
-                let jsonArray = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: AnyObject]
-                
-                if let feed = jsonArray["feed"] as? [String: AnyObject] {
-                    if let results = feed["results"] as? NSArray {
-                        
-                        self.listItems.removeAll()
-                        try PersistenceServce.contex.execute(NSBatchDeleteRequest(fetchRequest: NSFetchRequest(entityName: "Item")))
-                     
-                        for i in results {
-                            if let artworkUrlArray = i as? [String: AnyObject] {
-                                
-                                let artworkUrl = artworkUrlArray["artworkUrl100"] as! String
-                                let artistName = artworkUrlArray["artistName"] as! String
-                                let soundName = artworkUrlArray["name"] as! String
-                                
-                                let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName)
-                                self.array.append(arrayT)
-                                
-                                let item = Item(context: PersistenceServce.contex)
-                                item.artist = artistName
-                                item.sound = soundName
-                                item.image = artworkUrl
-                                
-                                let DF = DateFormatter()
-                                DF.dateFormat = "dd-MMMM-yyyy HH:mm"
-                                let dd = DF.string(from: self.date)
-                                item.date = dd
-                                
-                                do {
-                                    try PersistenceServce.contex.save()
-                                    self.listItems.append(item)
-                                } catch {
-                                    print("Didn't Save")
-                                }
-                                
-                            }
-                           
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-                
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-            }
-        }.resume()
-       
+    }
+    
+    func updateUserInterface() {
+        switch Network.reachability.status {
+        case .unreachable:
+            view.backgroundColor = .red
+            reachabilityIconView.isHidden = false
+        case .wwan:
+            view.backgroundColor = .yellow
+            reachabilityIconView.isHidden = true
+        case .wifi:
+            view.backgroundColor = .green
+            reachabilityIconView.isHidden = true
+        }
+//        print("Reachability Summary")
+//        print("Status:", Network.reachability.status)
+//        print("HostName:", Network.reachability.hostname ?? "nil")
+//        print("Reachable:", Network.reachability.isReachable)
+//        print("Wifi:", Network.reachability.isReachableViaWiFi)
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,31 +86,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if array.count == 0 {
-            print("Not connect")
+        
+        switch Network.reachability.status {
+        case .unreachable:
             return listItems.count
-        }else{
-            print("Sucsess")
+        case .wwan, .wifi:
             return array.count
         }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        if array.count == 0 {
+       switch Network.reachability.status {
+       case .unreachable:
             let item = listItems[indexPath.row] as! Item
-            
+    
+            cell.imageViewCell.downloadImage(from: item.image!)
             cell.artistNameCell.text = item.artist
             cell.soundNameCell.text = item.sound
-            cell.imageViewCell.loadImageUsingCacheWithUrlString(item.image!)
             cell.topLabel.text = "Топ \(indexPath.row + 1)"
-        }else{
-            
-            cell.imageViewCell.loadImageUsingCacheWithUrlString(self.array[indexPath.row].image)
+            cell.spinner.isHidden = true
+       case .wwan, .wifi:
+        
+            if let tweetCell = cell as? TableViewCell {
+                tweetCell.imageURL = URL(string: self.array[indexPath.row].image)
+            }
+           
             cell.artistNameCell.text = array[indexPath.row].artist
             cell.soundNameCell.text = array[indexPath.row].sound
             cell.topLabel.text = "Топ \(indexPath.row + 1)"
+        
         }
         
         cell.selectionStyle = .none
@@ -150,28 +125,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as! TableViewCell).spinner.stopAnimating()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
 
                 let detailVC = segue.destination as! ViewControllerImage
-
-                if array.count == 0 {
+                
+                switch Network.reachability.status {
+                case .unreachable:
                     let item = listItems[indexPath.row] as! Item
-
+                    
                     detailVC.imageName = item.image!
                     detailVC.title = item.artist
                     detailVC.time = item.date!
                     
-                }else{
+                case .wwan, .wifi:
                     detailVC.imageName = array[indexPath.row].image
                     detailVC.title = array[indexPath.row].artist
                     
                     let DF = DateFormatter()
-                    DF.dateFormat = "dd-MMMM-yyyy HH:mm"
+                    DF.dateFormat = "d MMM yyyy, HH:mm"
+                    DF.locale = Locale(identifier: "ru_RU")
                     let dd = DF.string(from: date)
                     detailVC.time = dd
                 }
+
             }
         }
     }

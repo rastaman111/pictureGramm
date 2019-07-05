@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */; };
+		EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813F22CF3FB800C642EF /* UserInfoImage.swift */; };
 		EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA522BA72D200533F27 /* AppDelegate.swift */; };
 		EAFDFAA822BA72D200533F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA722BA72D200533F27 /* ViewController.swift */; };
 		EAFDFAAB22BA72D200533F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAA922BA72D200533F27 /* Main.storyboard */; };
@@ -15,12 +17,13 @@
 		EAFDFAB322BA72D400533F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAB122BA72D400533F27 /* LaunchScreen.storyboard */; };
 		EAFDFABB22BA73FE00533F27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */; };
 		EAFDFABD22BA759100533F27 /* ViewControllerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */; };
-		EAFDFABF22BAB9D100533F27 /* extensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFABE22BAB9D100533F27 /* extensionUIImage.swift */; };
 		EAFDFAC322BBBC8D00533F27 /* AlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */; };
 		EAFDFAC522BBE70B00533F27 /* PersistenceServce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestInternetConnection .swift"; sourceTree = "<group>"; };
+		EA72813F22CF3FB800C642EF /* UserInfoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoImage.swift; sourceTree = "<group>"; };
 		EAFDFAA222BA72D200533F27 /* Picturegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picturegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFDFAA522BA72D200533F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFDFAA722BA72D200533F27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +34,6 @@
 		EAFDFAB422BA72D400533F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerImage.swift; sourceTree = "<group>"; };
-		EAFDFABE22BAB9D100533F27 /* extensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUIImage.swift; sourceTree = "<group>"; };
 		EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDialog.swift; sourceTree = "<group>"; };
 		EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceServce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,6 +49,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA72813E22CF1B3800C642EF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				EA72813F22CF3FB800C642EF /* UserInfoImage.swift */,
+				EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */,
+				EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */,
+				EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */,
+				EAFDFAAC22BA72D200533F27 /* Picturegram.xcdatamodeld */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		EAFDFA9922BA72D200533F27 = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +80,15 @@
 		EAFDFAA422BA72D200533F27 /* Picturegram */ = {
 			isa = PBXGroup;
 			children = (
-				EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */,
 				EAFDFAA522BA72D200533F27 /* AppDelegate.swift */,
 				EAFDFAA722BA72D200533F27 /* ViewController.swift */,
-				EAFDFABE22BAB9D100533F27 /* extensionUIImage.swift */,
-				EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */,
-				EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */,
-				EAFDFAA922BA72D200533F27 /* Main.storyboard */,
 				EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */,
-				EAFDFAAF22BA72D400533F27 /* Assets.xcassets */,
+				EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */,
+				EA72813E22CF1B3800C642EF /* New Group */,
+				EAFDFAA922BA72D200533F27 /* Main.storyboard */,
 				EAFDFAB122BA72D400533F27 /* LaunchScreen.storyboard */,
+				EAFDFAAF22BA72D400533F27 /* Assets.xcassets */,
 				EAFDFAB422BA72D400533F27 /* Info.plist */,
-				EAFDFAAC22BA72D200533F27 /* Picturegram.xcdatamodeld */,
 			);
 			path = Picturegram;
 			sourceTree = "<group>";
@@ -156,11 +167,12 @@
 				EAFDFAAE22BA72D200533F27 /* Picturegram.xcdatamodeld in Sources */,
 				EAFDFABB22BA73FE00533F27 /* TableViewCell.swift in Sources */,
 				EAFDFABD22BA759100533F27 /* ViewControllerImage.swift in Sources */,
-				EAFDFABF22BAB9D100533F27 /* extensionUIImage.swift in Sources */,
 				EAFDFAC322BBBC8D00533F27 /* AlertDialog.swift in Sources */,
 				EAFDFAA822BA72D200533F27 /* ViewController.swift in Sources */,
 				EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */,
+				EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */,
 				EAFDFAC522BBE70B00533F27 /* PersistenceServce.swift in Sources */,
+				EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
