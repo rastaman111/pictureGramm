@@ -22,13 +22,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Picturegram"
         
         UserInfoImage.forecast { (results: [UserImage]) in
             for i in results {
 
-                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound)
+                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic)
                 self.array.append(arrayT)
 
                 DispatchQueue.main.async {
@@ -37,8 +37,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,13 +60,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateUserInterface() {
         switch Network.reachability.status {
         case .unreachable:
-            view.backgroundColor = .red
+            //view.backgroundColor = .red
             reachabilityIconView.isHidden = false
         case .wwan:
-            view.backgroundColor = .yellow
+            //view.backgroundColor = .yellow
             reachabilityIconView.isHidden = true
         case .wifi:
-            view.backgroundColor = .green
+            //view.backgroundColor = .green
             reachabilityIconView.isHidden = true
         }
 //        print("Reachability Summary")
@@ -99,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        
        switch Network.reachability.status {
        case .unreachable:
             let item = listItems[indexPath.row] as! Item
@@ -113,6 +112,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let tweetCell = cell as? TableViewCell {
                 tweetCell.imageURL = URL(string: self.array[indexPath.row].image)
             }
+            
+            
            
             cell.artistNameCell.text = array[indexPath.row].artist
             cell.soundNameCell.text = array[indexPath.row].sound
@@ -120,6 +121,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         }
         
+        
+//        let colors = Colors()
+//        let BL = colors.gl
+//        BL?.frame = view.frame
+//        BL?.zPosition = -1
+//        cell.viewCell.layer.addSublayer(BL!)
+
         cell.selectionStyle = .none
 
         return cell
@@ -142,16 +150,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     detailVC.imageName = item.image!
                     detailVC.title = item.artist
                     detailVC.time = item.date!
+                    detailVC.urlMusic = item.urlMusic!
+                    detailVC.songName = item.sound!
+                    
                     
                 case .wwan, .wifi:
                     detailVC.imageName = array[indexPath.row].image
                     detailVC.title = array[indexPath.row].artist
+                    detailVC.songName = array[indexPath.row].sound
                     
                     let DF = DateFormatter()
                     DF.dateFormat = "d MMM yyyy, HH:mm"
                     DF.locale = Locale(identifier: "ru_RU")
                     let dd = DF.string(from: date)
                     detailVC.time = dd
+                    detailVC.urlMusic = array[indexPath.row].urlMusic
                 }
 
             }
@@ -159,4 +172,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 }
+
+
 

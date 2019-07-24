@@ -15,11 +15,13 @@ class UserImage {
     var image: String!
     var artist: String!
     var sound: String!
+    var urlMusic: String!
     
-    init(image: String, artist: String, sound: String) {
+    init(image: String, artist: String, sound: String, urlMusic: String ) {
         self.image = image
         self.artist = artist
         self.sound = sound
+        self.urlMusic = urlMusic
     }
     
 }
@@ -58,19 +60,22 @@ class UserInfoImage: NSObject {
                                         let artworkUrl = artworkUrlArray["artworkUrl100"] as! String
                                         let artistName = artworkUrlArray["artistName"] as! String
                                         let soundName = artworkUrlArray["name"] as! String
+                                        let urlMusic = artworkUrlArray["url"] as! String
                                         
-                                        let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName)
+                                        let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName, urlMusic: urlMusic)
                                         array.append(arrayT)
                                         
                                         let item = Item(context: PersistenceServce.contex)
                                         item.artist = artistName
                                         item.sound = soundName
                                         item.image = artworkUrl
+                                        item.urlMusic = urlMusic
                                         
                                         let DF = DateFormatter()
                                         DF.dateFormat = "d MMM yyyy, HH:mm"
                                         DF.locale = Locale(identifier: "ru_RU")
                                         let dd = DF.string(from: date)
+                                        
                                         item.date = dd
                                         
                                         do {

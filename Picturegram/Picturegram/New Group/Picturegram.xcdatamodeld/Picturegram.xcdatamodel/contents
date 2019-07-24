@@ -5,8 +5,9 @@
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sound" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlMusic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>
