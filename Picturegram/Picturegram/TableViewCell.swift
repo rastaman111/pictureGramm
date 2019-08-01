@@ -22,6 +22,18 @@ class TableViewCell: UITableViewCell {
         didSet {
             viewCell.layer.cornerRadius = 10
             viewCell.layer.masksToBounds = true
+            viewCell.backgroundColor = UIColor(red: 0.4, green: 0.50, blue: 0.70, alpha: 1)
+        }
+    }
+    @IBOutlet weak var backImageShadowView: UIView! {
+        didSet {
+            backImageShadowView.layer.shadowColor = UIColor.black.cgColor
+            backImageShadowView.layer.shadowOpacity = 1
+            backImageShadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            backImageShadowView.layer.shadowRadius = 10
+            backImageShadowView.layer.cornerRadius = 10
+            backImageShadowView.layer.shadowPath = UIBezierPath(roundedRect: backImageShadowView.bounds, cornerRadius: 10).cgPath
+            backImageShadowView.layer.masksToBounds = false
         }
     }
     
@@ -38,8 +50,7 @@ class TableViewCell: UITableViewCell {
             downloadImageAndCache()
         }
     }
-    
-   
+
     private func downloadImageAndCache() {
         if let cachedImage = imageCache.object(forKey: imageURL?.absoluteString as AnyObject) as? UIImage {
             imageViewCell.image = cachedImage
@@ -76,3 +87,4 @@ class TableViewCell: UITableViewCell {
     }
 
 }
+

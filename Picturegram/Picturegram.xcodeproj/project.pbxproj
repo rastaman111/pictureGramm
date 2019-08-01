@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */; };
 		EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813F22CF3FB800C642EF /* UserInfoImage.swift */; };
-		EAD23C8C22E7476A00EE211A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD23C8B22E7476A00EE211A /* Colors.swift */; };
 		EAD23C9122E825C900EE211A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */; };
 		EAD23C9222E825C900EE211A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */; };
 		EAD23C9322E825C900EE211A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */; };
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestInternetConnection .swift"; sourceTree = "<group>"; };
 		EA72813F22CF3FB800C642EF /* UserInfoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoImage.swift; sourceTree = "<group>"; };
-		EAD23C8B22E7476A00EE211A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				EAD23C8D22E825C900EE211A /* Fonts */,
-				EAD23C8B22E7476A00EE211A /* Colors.swift */,
 				EA72813F22CF3FB800C642EF /* UserInfoImage.swift */,
 				EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */,
 				EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */,
@@ -189,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAFDFAAE22BA72D200533F27 /* Picturegram.xcdatamodeld in Sources */,
-				EAD23C8C22E7476A00EE211A /* Colors.swift in Sources */,
 				EAFDFABB22BA73FE00533F27 /* TableViewCell.swift in Sources */,
 				EAFDFABD22BA759100533F27 /* ViewControllerImage.swift in Sources */,
 				EAFDFAC322BBBC8D00533F27 /* AlertDialog.swift in Sources */,

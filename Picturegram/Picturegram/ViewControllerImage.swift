@@ -12,6 +12,17 @@ class ViewControllerImage: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageDetail: UIImageView!
     @IBOutlet weak var nameSong: UILabel!
+    @IBOutlet weak var viewBackShadowImage: UIView! {
+        didSet {
+            viewBackShadowImage.layer.shadowColor = UIColor.black.cgColor
+            viewBackShadowImage.layer.shadowOpacity = 1
+            viewBackShadowImage.layer.shadowOffset = CGSize(width: 0, height: 0)
+            viewBackShadowImage.layer.shadowRadius = 10
+            viewBackShadowImage.layer.cornerRadius = 10
+            viewBackShadowImage.layer.shadowPath = UIBezierPath(roundedRect: viewBackShadowImage.bounds, cornerRadius: 10).cgPath
+            viewBackShadowImage.layer.masksToBounds = false
+        }
+    }
     
     var imageName = ""
     var time = ""

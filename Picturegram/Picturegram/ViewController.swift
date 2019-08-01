@@ -13,29 +13,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reachabilityIconView: UIView!
-
+    @IBOutlet weak var loadTableViewIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadTableViewLabel: UILabel!
+    
+    @IBOutlet weak var buildVersionLabel: UILabel!
+    
     var array: [UserImage] = []
     
     var listItems = [NSManagedObject]()
     
     let date = Date()
     
+    let kVersion = "CFBundleShortVersionString"
+    let kBuildNumber = "CFBundleVersion"
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.isHidden = true
+        loadTableViewIndicator.startAnimating()
+        
         title = "Picturegram"
+        
+        buildVersionLabel.text = getVersion()
         
         UserInfoImage.forecast { (results: [UserImage]) in
             for i in results {
-
+                
                 let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic)
                 self.array.append(arrayT)
-
+                
                 DispatchQueue.main.async {
+                    self.tableView.isHidden = false
+                    self.loadTableViewLabel.isHidden = true
+                    self.loadTableViewIndicator.stopAnimating()
+                    self.loadTableViewIndicator.isHidden = true
                     self.tableView.reloadData()
                 }
             }
         }
+        
+        tableView.bounces = false
     
     }
     
@@ -54,7 +72,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: nil)
         
         updateUserInterface()
+
+    }
+    
+    func getVersion() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary[kVersion] as! String
+        let build = dictionary[kBuildNumber] as! String
         
+        return "Версия \(version), сборка \(build)"
     }
     
     func updateUserInterface() {
@@ -63,10 +89,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //view.backgroundColor = .red
             reachabilityIconView.isHidden = false
         case .wwan:
-            //view.backgroundColor = .yellow
             reachabilityIconView.isHidden = true
         case .wifi:
-            //view.backgroundColor = .green
             reachabilityIconView.isHidden = true
         }
 //        print("Reachability Summary")
@@ -102,7 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        case .unreachable:
             let item = listItems[indexPath.row] as! Item
     
-            cell.imageViewCell.downloadImage(from: item.image!)
+            cell.imageViewCell.downloadImage(from: (item.image!))
             cell.artistNameCell.text = item.artist
             cell.soundNameCell.text = item.sound
             cell.topLabel.text = "Топ \(indexPath.row + 1)"
@@ -113,30 +137,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tweetCell.imageURL = URL(string: self.array[indexPath.row].image)
             }
             
-            
-           
             cell.artistNameCell.text = array[indexPath.row].artist
             cell.soundNameCell.text = array[indexPath.row].sound
             cell.topLabel.text = "Топ \(indexPath.row + 1)"
-        
+
         }
         
-        
-//        let colors = Colors()
-//        let BL = colors.gl
-//        BL?.frame = view.frame
-//        BL?.zPosition = -1
-//        cell.viewCell.layer.addSublayer(BL!)
-
         cell.selectionStyle = .none
 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as! TableViewCell).spinner.stopAnimating()
-    }
+
     
+//
+//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        (cell as! TableViewCell).spinner.stopAnimating()
+//    }
+//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -152,7 +170,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     detailVC.time = item.date!
                     detailVC.urlMusic = item.urlMusic!
                     detailVC.songName = item.sound!
-                    
                     
                 case .wwan, .wifi:
                     detailVC.imageName = array[indexPath.row].image
