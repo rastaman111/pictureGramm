@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 18)!
+            NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 19)!
         ]
         
         navBar.backIndicatorImage = backButtonImage

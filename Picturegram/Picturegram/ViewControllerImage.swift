@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerImage: UIViewController, UINavigationControllerDelegate {
+class ViewControllerImage: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate  {
 
     @IBOutlet weak var imageDetail: UIImageView!
     @IBOutlet weak var nameSong: UILabel!
@@ -28,6 +28,7 @@ class ViewControllerImage: UIViewController, UINavigationControllerDelegate {
     var time = ""
     var songName = ""
     var urlMusic = ""
+    var releaseDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,20 @@ class ViewControllerImage: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func dateButton(_ sender: UIButton) {
-         AlertDialog.showAlert("Дата скачивания:", message: "\(time)", viewController: self)
+         //AlertDialog.showAlert("Дата скачивания:", message: "\(time)", viewController: self)
+        let VC = storyboard?.instantiateViewController(withIdentifier: "ViewControllerPopover") as! ViewControllerPopover
+        VC.modalPresentationStyle = .popover
+        VC.popoverPresentationController?.permittedArrowDirections = .down
+        VC.popoverPresentationController?.delegate = self
+        VC.popoverPresentationController?.sourceView = sender
+        VC.popoverPresentationController?.sourceRect = sender.bounds
+        VC.time = time
+        VC.releaseDate = releaseDate
+        present(VC, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
    
     @IBAction func openMusic(_ sender: UIButton) {

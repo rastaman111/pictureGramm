@@ -16,12 +16,14 @@ class UserImage {
     var artist: String!
     var sound: String!
     var urlMusic: String!
+    var releaseDate: String!
     
-    init(image: String, artist: String, sound: String, urlMusic: String ) {
+    init(image: String, artist: String, sound: String, urlMusic: String, releaseDate: String! ) {
         self.image = image
         self.artist = artist
         self.sound = sound
         self.urlMusic = urlMusic
+        self.releaseDate = releaseDate
     }
     
 }
@@ -61,8 +63,9 @@ class UserInfoImage: NSObject {
                                         let artistName = artworkUrlArray["artistName"] as! String
                                         let soundName = artworkUrlArray["name"] as! String
                                         let urlMusic = artworkUrlArray["url"] as! String
+                                        let releaseDate = artworkUrlArray["releaseDate"] as! String
                                         
-                                        let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName, urlMusic: urlMusic)
+                                        let arrayT = UserImage(image: artworkUrl, artist: artistName, sound: soundName, urlMusic: urlMusic, releaseDate: releaseDate)
                                         array.append(arrayT)
                                         
                                         let item = Item(context: PersistenceServce.contex)
@@ -70,6 +73,7 @@ class UserInfoImage: NSObject {
                                         item.sound = soundName
                                         item.image = artworkUrl
                                         item.urlMusic = urlMusic
+                                        item.releaseDate = releaseDate
                                         
                                         let DF = DateFormatter()
                                         DF.dateFormat = "d MMM yyyy, HH:mm"

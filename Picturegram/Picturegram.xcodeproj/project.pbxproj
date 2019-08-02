@@ -12,6 +12,7 @@
 		EAD23C9122E825C900EE211A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */; };
 		EAD23C9222E825C900EE211A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */; };
 		EAD23C9322E825C900EE211A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */; };
+		EAF58C1022F420F9007E51DD /* ViewControllerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */; };
 		EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA522BA72D200533F27 /* AppDelegate.swift */; };
 		EAFDFAA822BA72D200533F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA722BA72D200533F27 /* ViewController.swift */; };
 		EAFDFAAB22BA72D200533F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAA922BA72D200533F27 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPopover.swift; sourceTree = "<group>"; };
 		EAFDFAA222BA72D200533F27 /* Picturegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picturegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFDFAA522BA72D200533F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFDFAA722BA72D200533F27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,9 +104,10 @@
 				EAFDFAA722BA72D200533F27 /* ViewController.swift */,
 				EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */,
 				EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */,
-				EA72813E22CF1B3800C642EF /* New Group */,
+				EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */,
 				EAFDFAA922BA72D200533F27 /* Main.storyboard */,
 				EAFDFAB122BA72D400533F27 /* LaunchScreen.storyboard */,
+				EA72813E22CF1B3800C642EF /* New Group */,
 				EAFDFAAF22BA72D400533F27 /* Assets.xcassets */,
 				EAFDFAB422BA72D400533F27 /* Info.plist */,
 			);
@@ -193,6 +196,7 @@
 				EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */,
 				EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */,
 				EAFDFAC522BBE70B00533F27 /* PersistenceServce.swift in Sources */,
+				EAF58C1022F420F9007E51DD /* ViewControllerPopover.swift in Sources */,
 				EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

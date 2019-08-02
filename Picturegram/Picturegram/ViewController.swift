@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         UserInfoImage.forecast { (results: [UserImage]) in
             for i in results {
                 
-                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic)
+                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic, releaseDate: i.releaseDate)
                 self.array.append(arrayT)
                 
                 DispatchQueue.main.async {
@@ -133,13 +133,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.spinner.isHidden = true
        case .wwan, .wifi:
         
+            let arrayCell = array[indexPath.row]
+            
+            cell.artistNameCell.text = arrayCell.artist
+            cell.soundNameCell.text = arrayCell.sound
+            cell.topLabel.text = "Топ \(indexPath.row + 1)"
+        
             if let tweetCell = cell as? TableViewCell {
-                tweetCell.imageURL = URL(string: self.array[indexPath.row].image)
+                tweetCell.imageURL = URL(string: arrayCell.image)
             }
             
-            cell.artistNameCell.text = array[indexPath.row].artist
-            cell.soundNameCell.text = array[indexPath.row].sound
-            cell.topLabel.text = "Топ \(indexPath.row + 1)"
+        
 
         }
         
@@ -170,18 +174,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     detailVC.time = item.date!
                     detailVC.urlMusic = item.urlMusic!
                     detailVC.songName = item.sound!
+                    detailVC.releaseDate = item.releaseDate!
                     
                 case .wwan, .wifi:
-                    detailVC.imageName = array[indexPath.row].image
-                    detailVC.title = array[indexPath.row].artist
-                    detailVC.songName = array[indexPath.row].sound
+                    let arrayPrepare = array[indexPath.row]
+                    
+                    detailVC.imageName = arrayPrepare.image
+                    detailVC.title = arrayPrepare.artist
+                    detailVC.songName = arrayPrepare.sound
+                    detailVC.urlMusic = arrayPrepare.urlMusic
+                    detailVC.releaseDate = arrayPrepare.releaseDate
                     
                     let DF = DateFormatter()
                     DF.dateFormat = "d MMM yyyy, HH:mm"
                     DF.locale = Locale(identifier: "ru_RU")
                     let dd = DF.string(from: date)
                     detailVC.time = dd
-                    detailVC.urlMusic = array[indexPath.row].urlMusic
+                    
                 }
 
             }
