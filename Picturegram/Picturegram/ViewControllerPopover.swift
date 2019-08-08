@@ -36,6 +36,7 @@ class ViewControllerPopover: UIViewController, UITableViewDelegate, UITableViewD
         popoverArray.append(array1)
         
         
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +52,9 @@ class ViewControllerPopover: UIViewController, UITableViewDelegate, UITableViewD
         cell.textLabel?.font = UIFont(name:"OpenSans-Semibold", size: 17.0)
         cell.detailTextLabel?.text = array.detail
         cell.detailTextLabel?.font = UIFont(name:"OpenSans-Semibold", size: 17.0)
-
+        
+         cell.selectionStyle = .none
+        
         return cell
     }
   

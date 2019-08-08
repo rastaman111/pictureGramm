@@ -26,9 +26,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let kVersion = "CFBundleShortVersionString"
     let kBuildNumber = "CFBundleVersion"
+    
+    var kTableHeaderHeight:CGFloat = 250.0
+    var headerView: UIView!
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableView.automaticDimension
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: kTableHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -kTableHeaderHeight + 5)
+        updateHeaderView()
+        
         
         self.tableView.isHidden = true
         loadTableViewIndicator.startAnimating()
@@ -40,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         UserInfoImage.forecast { (results: [UserImage]) in
             for i in results {
                 
-                let arrayT = UserImage(image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic, releaseDate: i.releaseDate)
+                let arrayT = UserImage(id: i.id, image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic, releaseDate: i.releaseDate)
                 self.array.append(arrayT)
                 
                 DispatchQueue.main.async {
@@ -52,8 +65,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         }
-        
-        tableView.bounces = false
     
     }
     
@@ -74,6 +85,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         updateUserInterface()
 
     }
+   
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+        
+//        let content = scrollView.contentOffset.y
+//        print(content)
+        
+    }
+    
+    func updateHeaderView() {
+        
+        var headerRect = CGRect(x: 0, y: -kTableHeaderHeight, width: tableView.bounds.width, height: kTableHeaderHeight)
+        
+        if tableView.contentOffset.y < -kTableHeaderHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        
+        headerView.frame = headerRect
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func getVersion() -> String {
         let dictionary = Bundle.main.infoDictionary!
@@ -87,6 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         switch Network.reachability.status {
         case .unreachable:
             //view.backgroundColor = .red
+            tableView.isHidden = false
             reachabilityIconView.isHidden = false
         case .wwan:
             reachabilityIconView.isHidden = true
@@ -94,7 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             reachabilityIconView.isHidden = true
         }
 //        print("Reachability Summary")
-//        print("Status:", Network.reachability.status)
+//        print("Status:", Network.reachViewController
 //        print("HostName:", Network.reachability.hostname ?? "nil")
 //        print("Reachable:", Network.reachability.isReachable)
 //        print("Wifi:", Network.reachability.isReachableViaWiFi)
@@ -142,23 +180,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let tweetCell = cell as? TableViewCell {
                 tweetCell.imageURL = URL(string: arrayCell.image)
             }
-            
         
-
         }
-        
+        cell.indentationLevel = 2
         cell.selectionStyle = .none
 
         return cell
     }
-    
 
-    
-//
-//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        (cell as! TableViewCell).spinner.stopAnimating()
-//    }
-//
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as! TableViewCell).spinner.stopAnimating()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -170,20 +203,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let item = listItems[indexPath.row] as! Item
                     
                     detailVC.imageName = item.image!
+                    detailVC.artistName = item.artist!
                     detailVC.title = item.artist
                     detailVC.time = item.date!
                     detailVC.urlMusic = item.urlMusic!
                     detailVC.songName = item.sound!
                     detailVC.releaseDate = item.releaseDate!
+                    detailVC.connected = false
                     
                 case .wwan, .wifi:
                     let arrayPrepare = array[indexPath.row]
                     
                     detailVC.imageName = arrayPrepare.image
                     detailVC.title = arrayPrepare.artist
+                    detailVC.artistName = arrayPrepare.artist
                     detailVC.songName = arrayPrepare.sound
                     detailVC.urlMusic = arrayPrepare.urlMusic
                     detailVC.releaseDate = arrayPrepare.releaseDate
+                    detailVC.id = arrayPrepare.id
+                    detailVC.connected = true
                     
                     let DF = DateFormatter()
                     DF.dateFormat = "d MMM yyyy, HH:mm"

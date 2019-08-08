@@ -42,8 +42,6 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var soundNameCell: UILabel!
     @IBOutlet weak var topLabel: UILabel!
     
-    
-    
     var imageURL: URL? {
         didSet {
             imageViewCell.image = nil
@@ -86,5 +84,22 @@ class TableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+}
+
+
+extension UIImageView {
+    
+    func downloadImage(from url: String) {
+        let url = URL(string: url)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error == nil{
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: data!)
+                }
+            }
+            
+        }).resume()
+    }
+    
 }
 
