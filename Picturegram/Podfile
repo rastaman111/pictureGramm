@@ -1,0 +1,16 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Picturegram' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  pod 'RxMusicPlayer', '~> 1.0.0'
+  pod 'LNPopupController', '~> 2.8'
+  pod 'ReachabilitySwift'
+  pod 'Kingfisher'
+
+
+  # Pods for Picturegram
+
+end

@@ -16,23 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-      
-        do {
-            try Network.reachability = Reachability(hostname: "www.google.com")
-        }
-        catch {
-
-        }
-        
         let backButtonImage = UIImage(named: "back")
         let navBar = UINavigationBar.appearance()
-        navBar.barTintColor = UIColor(red: 0.4, green: 0.47, blue: 0.68, alpha: 1)
+        navBar.barTintColor = #colorLiteral(red: 0.4395738244, green: 0.3904562891, blue: 0.8513493538, alpha: 1)
         navBar.tintColor = UIColor.white
         navBar.barStyle = .black
         
         navBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 19)!
+            //NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 19)!
         ]
         
         navBar.backIndicatorImage = backButtonImage

@@ -1,0 +1,6 @@
+framework module RxMusicPlayer {
+  umbrella header "RxMusicPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

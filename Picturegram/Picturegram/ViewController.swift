@@ -7,29 +7,32 @@
 //
 
 import UIKit
-import CoreData
+import Kingfisher
+import LNPopupController
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var reachabilityIconView: UIView!
     @IBOutlet weak var loadTableViewIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadTableViewLabel: UILabel!
     
     @IBOutlet weak var buildVersionLabel: UILabel!
-    
-    var array: [UserImage] = []
-    
-    var listItems = [NSManagedObject]()
-    
-    let date = Date()
-    
+   
     let kVersion = "CFBundleShortVersionString"
     let kBuildNumber = "CFBundleVersion"
     
     var kTableHeaderHeight:CGFloat = 250.0
     var headerView: UIView!
-  
+    
+    let musicPlayer = RxAudioMusicPlayer.shared
+    var audioTracks: [AudioTrack]?
+    
+    required init?(coder aDecoder: NSCoder) {
+        audioTracks = []
+        
+        super.init(coder:aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,48 +53,60 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         buildVersionLabel.text = getVersion()
         
-        UserInfoImage.forecast { (results: [UserImage]) in
-            for i in results {
-                
-                let arrayT = UserImage(id: i.id, image: i.image, artist: i.artist, sound: i.sound, urlMusic: i.urlMusic, releaseDate: i.releaseDate)
-                self.array.append(arrayT)
-                
-                DispatchQueue.main.async {
-                    self.tableView.isHidden = false
-                    self.loadTableViewLabel.isHidden = true
-                    self.loadTableViewIndicator.stopAnimating()
-                    self.loadTableViewIndicator.isHidden = true
-                    self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ReachabilityManager.isUnreachable { _ in
+            self.showOfflinePage()
+        }
+        
+        ReachabilityManager.isReachable { _ in
+            UserInfoImage.forecast { ( results ) in
+                for i in results {
+                    let arrayT = AudioTrack(urlMusic: i.urlMusic ?? "", artist: i.artist ?? "", sound: i.sound ?? "", releaseDate: i.releaseDate ?? "", id: i.id ?? "", image: i.image, artwork: i.artwork, urlAppleMusic: i.urlAppleMusic ?? "", time: i.time)
+                    self.audioTracks!.append(arrayT)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.isHidden = false
+                        self.loadTableViewLabel.isHidden = true
+                        self.loadTableViewIndicator.stopAnimating()
+                        self.loadTableViewIndicator.isHidden = true
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-        do {
-            let result = try PersistenceServce.contex.fetch(fetchRequest)
-            listItems = result as [NSManagedObject]
-            self.tableView.reloadData()
-        }catch{
-            print("Data didn not Retrieve")
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: nil)
-        
-        updateUserInterface()
-
+        tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated: false)
     }
-   
+    
+    func showOfflinePage() -> Void {
+        DispatchQueue.main.async {
+    
+            let viewControllerMessageList = self.storyboard?.instantiateViewController(withIdentifier: "OfflineViewController") as! OfflineViewController
+            self.navigationController?.pushViewController(viewControllerMessageList, animated: true)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        #if !targetEnvironment(macCatalyst)
+        if ProcessInfo.processInfo.operatingSystemVersion.majorVersion <= 10 {
+            let insets = UIEdgeInsets.init(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
+        #endif
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateHeaderView()
-        
-//        let content = scrollView.contentOffset.y
-//        print(content)
-        
     }
     
     func updateHeaderView() {
@@ -107,7 +122,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -120,121 +134,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return "Версия \(version), сборка \(build)"
     }
     
-    func updateUserInterface() {
-        switch Network.reachability.status {
-        case .unreachable:
-            //view.backgroundColor = .red
-            tableView.isHidden = false
-            reachabilityIconView.isHidden = false
-        case .wwan:
-            reachabilityIconView.isHidden = true
-        case .wifi:
-            reachabilityIconView.isHidden = true
-        }
-//        print("Reachability Summary")
-//        print("Status:", Network.reachViewController
-//        print("HostName:", Network.reachability.hostname ?? "nil")
-//        print("Reachable:", Network.reachability.isReachable)
-//        print("Wifi:", Network.reachability.isReachableViaWiFi)
-    }
-    @objc func statusManager(_ notification: Notification) {
-        updateUserInterface()
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 385
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch Network.reachability.status {
-        case .unreachable:
-            return listItems.count
-        case .wwan, .wifi:
-            return array.count
-        }
-
+        return audioTracks!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        let item = audioTracks![indexPath.row]
         
-       switch Network.reachability.status {
-       case .unreachable:
-            let item = listItems[indexPath.row] as! Item
-    
-            cell.imageViewCell.downloadImage(from: (item.image!))
-            cell.artistNameCell.text = item.artist
-            cell.soundNameCell.text = item.sound
-            cell.topLabel.text = "Топ \(indexPath.row + 1)"
-            cell.spinner.isHidden = true
-       case .wwan, .wifi:
+        cell.artistNameCell.text = item.artist
+        cell.soundNameCell.text = item.sound
+        cell.topLabel.text = "Топ \(indexPath.row + 1)"
         
-            let arrayCell = array[indexPath.row]
-            
-            cell.artistNameCell.text = arrayCell.artist
-            cell.soundNameCell.text = arrayCell.sound
-            cell.topLabel.text = "Топ \(indexPath.row + 1)"
+        cell.imageViewCell.kf.indicatorType = .activity
+        cell.imageViewCell.kf.setImage(with: URL(string: item.image ?? ""))
         
-            if let tweetCell = cell as? TableViewCell {
-                tweetCell.imageURL = URL(string: arrayCell.image)
-            }
-        
-        }
-        cell.indentationLevel = 2
+        //cell.indentationLevel = 2
         cell.selectionStyle = .none
-
+        
         return cell
     }
-
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as! TableViewCell).spinner.stopAnimating()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-
-                let detailVC = segue.destination as! ViewControllerImage
-                
-                switch Network.reachability.status {
-                case .unreachable:
-                    let item = listItems[indexPath.row] as! Item
-                    
-                    detailVC.imageName = item.image!
-                    detailVC.artistName = item.artist!
-                    detailVC.title = item.artist
-                    detailVC.time = item.date!
-                    detailVC.urlMusic = item.urlMusic!
-                    detailVC.songName = item.sound!
-                    detailVC.releaseDate = item.releaseDate!
-                    detailVC.connected = false
-                    
-                case .wwan, .wifi:
-                    let arrayPrepare = array[indexPath.row]
-                    
-                    detailVC.imageName = arrayPrepare.image
-                    detailVC.title = arrayPrepare.artist
-                    detailVC.artistName = arrayPrepare.artist
-                    detailVC.songName = arrayPrepare.sound
-                    detailVC.urlMusic = arrayPrepare.urlMusic
-                    detailVC.releaseDate = arrayPrepare.releaseDate
-                    detailVC.id = arrayPrepare.id
-                    detailVC.connected = true
-                    
-                    let DF = DateFormatter()
-                    DF.dateFormat = "d MMM yyyy, HH:mm"
-                    DF.locale = Locale(identifier: "ru_RU")
-                    let dd = DF.string(from: date)
-                    detailVC.time = dd
-                    
-                }
-
-            }
+  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: "RxViewControllerPlayer") as! RxViewControllerPlayer
+      
+        musicPlayer.addSource(audioTracks!, startAt: indexPath.row)
+    
+        popupContentController.popupItem.accessibilityHint = NSLocalizedString("Double Tap to Expand the Mini Player", comment: "")
+        tabBarController?.popupContentView.popupCloseButton.accessibilityLabel = NSLocalizedString("Dismiss Now Playing Screen", comment: "")
+        tabBarController?.popupBar.imageView.layer.cornerRadius = 5
+        
+        tabBarController?.popupBar.marqueeScrollEnabled = true
+        
+        #if targetEnvironment(macCatalyst)
+        tabBarController?.popupBar.inheritsVisualStyleFromDockingView = true
+        #endif
+        
+        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
+        
+        if #available(iOS 13.0, *) {
+            tabBarController?.popupBar.tintColor = UIColor.label
+        } else {
+            tabBarController?.popupBar.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
 }
 
 

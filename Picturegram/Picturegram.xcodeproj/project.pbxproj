@@ -3,16 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */; };
+		B33076ACC09F1F7B6815AEE1 /* Pods_Picturegram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E4A1D65F3FEAA44C03A4ED /* Pods_Picturegram.framework */; };
+		EA37000A25372A7100C139A8 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37000925372A7100C139A8 /* ReachabilityManager.swift */; };
+		EA37001625372C6300C139A8 /* ParseableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37001525372C6300C139A8 /* ParseableProtocol.swift */; };
 		EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72813F22CF3FB800C642EF /* UserInfoImage.swift */; };
-		EAD23C9122E825C900EE211A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */; };
-		EAD23C9222E825C900EE211A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */; };
-		EAD23C9322E825C900EE211A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */; };
-		EAF58C1022F420F9007E51DD /* ViewControllerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */; };
+		EA85BA9C24EEBD45000DF545 /* RxAudioMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BA9B24EEBD45000DF545 /* RxAudioMusicPlayer.swift */; };
+		EA85BA9E24EEBD69000DF545 /* RxViewControllerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BA9D24EEBD69000DF545 /* RxViewControllerPlayer.swift */; };
+		EA85BAA024EEBDDE000DF545 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BA9F24EEBDDE000DF545 /* MarqueeLabel.swift */; };
+		EA85BAA624EEBE4A000DF545 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAA224EEBE4A000DF545 /* Wireframe.swift */; };
+		EA85BAA724EEBE4A000DF545 /* PlaybackRateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAA324EEBE4A000DF545 /* PlaybackRateAction.swift */; };
+		EA85BAA824EEBE4A000DF545 /* ProgressSlider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAA424EEBE4A000DF545 /* ProgressSlider+Rx.swift */; };
+		EA85BAA924EEBE4A000DF545 /* ProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAA524EEBE4A000DF545 /* ProgressSlider.swift */; };
+		EA85BAAD24EEBEED000DF545 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAAC24EEBEEC000DF545 /* SettingsTableViewController.m */; };
+		EA85BAD924F0CE76000DF545 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85BAD824F0CE76000DF545 /* AudioTrack.swift */; };
+		EA85BAE424F0E0F5000DF545 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADA24F0E0F4000DF545 /* OpenSans-Regular.ttf */; };
+		EA85BAE524F0E0F5000DF545 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADB24F0E0F4000DF545 /* OpenSans-Bold.ttf */; };
+		EA85BAE624F0E0F5000DF545 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADC24F0E0F5000DF545 /* OpenSans-Semibold.ttf */; };
+		EA85BAE724F0E0F5000DF545 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADD24F0E0F5000DF545 /* OpenSans-SemiboldItalic.ttf */; };
+		EA85BAE824F0E0F5000DF545 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADE24F0E0F5000DF545 /* OpenSans-BoldItalic.ttf */; };
+		EA85BAE924F0E0F5000DF545 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BADF24F0E0F5000DF545 /* OpenSans-LightItalic.ttf */; };
+		EA85BAEA24F0E0F5000DF545 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BAE024F0E0F5000DF545 /* OpenSans-ExtraBoldItalic.ttf */; };
+		EA85BAEB24F0E0F5000DF545 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BAE124F0E0F5000DF545 /* OpenSans-ExtraBold.ttf */; };
+		EA85BAEC24F0E0F5000DF545 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BAE224F0E0F5000DF545 /* OpenSans-Light.ttf */; };
+		EA85BAED24F0E0F5000DF545 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA85BAE324F0E0F5000DF545 /* OpenSans-Italic.ttf */; };
+		EAC5603A253891CE00A5DF67 /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC56039253891CE00A5DF67 /* OfflineViewController.swift */; };
 		EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA522BA72D200533F27 /* AppDelegate.swift */; };
 		EAFDFAA822BA72D200533F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAA722BA72D200533F27 /* ViewController.swift */; };
 		EAFDFAAB22BA72D200533F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAA922BA72D200533F27 /* Main.storyboard */; };
@@ -20,18 +38,38 @@
 		EAFDFAB022BA72D400533F27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAAF22BA72D400533F27 /* Assets.xcassets */; };
 		EAFDFAB322BA72D400533F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFDFAB122BA72D400533F27 /* LaunchScreen.storyboard */; };
 		EAFDFABB22BA73FE00533F27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */; };
-		EAFDFABD22BA759100533F27 /* ViewControllerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */; };
 		EAFDFAC322BBBC8D00533F27 /* AlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */; };
-		EAFDFAC522BBE70B00533F27 /* PersistenceServce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestInternetConnection .swift"; sourceTree = "<group>"; };
+		13FF70B21BED2EE664CD5161 /* Pods-Picturegram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picturegram.release.xcconfig"; path = "Target Support Files/Pods-Picturegram/Pods-Picturegram.release.xcconfig"; sourceTree = "<group>"; };
+		29E4A1D65F3FEAA44C03A4ED /* Pods_Picturegram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Picturegram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9E51F83D3E541F7DC19D46 /* Pods-Picturegram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picturegram.debug.xcconfig"; path = "Target Support Files/Pods-Picturegram/Pods-Picturegram.debug.xcconfig"; sourceTree = "<group>"; };
+		EA37000925372A7100C139A8 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		EA37001525372C6300C139A8 /* ParseableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseableProtocol.swift; sourceTree = "<group>"; };
 		EA72813F22CF3FB800C642EF /* UserInfoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoImage.swift; sourceTree = "<group>"; };
-		EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPopover.swift; sourceTree = "<group>"; };
+		EA85BA9B24EEBD45000DF545 /* RxAudioMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxAudioMusicPlayer.swift; sourceTree = "<group>"; };
+		EA85BA9D24EEBD69000DF545 /* RxViewControllerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewControllerPlayer.swift; sourceTree = "<group>"; };
+		EA85BA9F24EEBDDE000DF545 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
+		EA85BAA224EEBE4A000DF545 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
+		EA85BAA324EEBE4A000DF545 /* PlaybackRateAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackRateAction.swift; sourceTree = "<group>"; };
+		EA85BAA424EEBE4A000DF545 /* ProgressSlider+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProgressSlider+Rx.swift"; sourceTree = "<group>"; };
+		EA85BAA524EEBE4A000DF545 /* ProgressSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressSlider.swift; sourceTree = "<group>"; };
+		EA85BAAA24EEBEEC000DF545 /* Picturegram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Picturegram-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA85BAAB24EEBEEC000DF545 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		EA85BAAC24EEBEEC000DF545 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		EA85BAD824F0CE76000DF545 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		EA85BADA24F0E0F4000DF545 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		EA85BADB24F0E0F4000DF545 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		EA85BADC24F0E0F5000DF545 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		EA85BADD24F0E0F5000DF545 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		EA85BADE24F0E0F5000DF545 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		EA85BADF24F0E0F5000DF545 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		EA85BAE024F0E0F5000DF545 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		EA85BAE124F0E0F5000DF545 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EA85BAE224F0E0F5000DF545 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		EA85BAE324F0E0F5000DF545 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		EAC56039253891CE00A5DF67 /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
 		EAFDFAA222BA72D200533F27 /* Picturegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picturegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFDFAA522BA72D200533F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFDFAA722BA72D200533F27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,9 +79,7 @@
 		EAFDFAB222BA72D400533F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAFDFAB422BA72D400533F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerImage.swift; sourceTree = "<group>"; };
 		EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDialog.swift; sourceTree = "<group>"; };
-		EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceServce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,31 +87,69 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33076ACC09F1F7B6815AEE1 /* Pods_Picturegram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CA71AD009E23677FD884691 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29E4A1D65F3FEAA44C03A4ED /* Pods_Picturegram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95182F0885F50D031A125385 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD9E51F83D3E541F7DC19D46 /* Pods-Picturegram.debug.xcconfig */,
+				13FF70B21BED2EE664CD5161 /* Pods-Picturegram.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EA72813E22CF1B3800C642EF /* New Group */ = {
 			isa = PBXGroup;
 			children = (
 				EAD23C8D22E825C900EE211A /* Fonts */,
 				EA72813F22CF3FB800C642EF /* UserInfoImage.swift */,
-				EAFDFAC422BBE70A00533F27 /* PersistenceServce.swift */,
-				EA72813A22CDF78C00C642EF /* TestInternetConnection .swift */,
+				EA85BAD824F0CE76000DF545 /* AudioTrack.swift */,
 				EAFDFAC222BBBC8D00533F27 /* AlertDialog.swift */,
+				EA37000925372A7100C139A8 /* ReachabilityManager.swift */,
+				EA37001525372C6300C139A8 /* ParseableProtocol.swift */,
 				EAFDFAAC22BA72D200533F27 /* Picturegram.xcdatamodeld */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		EA85BAA124EEBE4A000DF545 /* RxMusicPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EA85BA9F24EEBDDE000DF545 /* MarqueeLabel.swift */,
+				EA85BAA224EEBE4A000DF545 /* Wireframe.swift */,
+				EA85BAA324EEBE4A000DF545 /* PlaybackRateAction.swift */,
+				EA85BAA424EEBE4A000DF545 /* ProgressSlider+Rx.swift */,
+				EA85BAA524EEBE4A000DF545 /* ProgressSlider.swift */,
+			);
+			path = RxMusicPlayer;
+			sourceTree = "<group>";
+		};
 		EAD23C8D22E825C900EE211A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				EAD23C8E22E825C900EE211A /* OpenSans-Semibold.ttf */,
-				EAD23C8F22E825C900EE211A /* OpenSans-Light.ttf */,
-				EAD23C9022E825C900EE211A /* OpenSans-Regular.ttf */,
+				EA85BADB24F0E0F4000DF545 /* OpenSans-Bold.ttf */,
+				EA85BADE24F0E0F5000DF545 /* OpenSans-BoldItalic.ttf */,
+				EA85BAE124F0E0F5000DF545 /* OpenSans-ExtraBold.ttf */,
+				EA85BAE024F0E0F5000DF545 /* OpenSans-ExtraBoldItalic.ttf */,
+				EA85BAE324F0E0F5000DF545 /* OpenSans-Italic.ttf */,
+				EA85BAE224F0E0F5000DF545 /* OpenSans-Light.ttf */,
+				EA85BADF24F0E0F5000DF545 /* OpenSans-LightItalic.ttf */,
+				EA85BADA24F0E0F4000DF545 /* OpenSans-Regular.ttf */,
+				EA85BADC24F0E0F5000DF545 /* OpenSans-Semibold.ttf */,
+				EA85BADD24F0E0F5000DF545 /* OpenSans-SemiboldItalic.ttf */,
 			);
 			name = Fonts;
 			path = "../../../../Downloads/navigation-stack-master/Source/Fonts";
@@ -86,6 +160,8 @@
 			children = (
 				EAFDFAA422BA72D200533F27 /* Picturegram */,
 				EAFDFAA322BA72D200533F27 /* Products */,
+				95182F0885F50D031A125385 /* Pods */,
+				5CA71AD009E23677FD884691 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,14 +178,19 @@
 			children = (
 				EAFDFAA522BA72D200533F27 /* AppDelegate.swift */,
 				EAFDFAA722BA72D200533F27 /* ViewController.swift */,
+				EAC56039253891CE00A5DF67 /* OfflineViewController.swift */,
 				EAFDFABA22BA73FE00533F27 /* TableViewCell.swift */,
-				EAFDFABC22BA759100533F27 /* ViewControllerImage.swift */,
-				EAF58C0F22F420F9007E51DD /* ViewControllerPopover.swift */,
 				EAFDFAA922BA72D200533F27 /* Main.storyboard */,
 				EAFDFAB122BA72D400533F27 /* LaunchScreen.storyboard */,
+				EA85BA9B24EEBD45000DF545 /* RxAudioMusicPlayer.swift */,
+				EA85BA9D24EEBD69000DF545 /* RxViewControllerPlayer.swift */,
+				EA85BAA124EEBE4A000DF545 /* RxMusicPlayer */,
 				EA72813E22CF1B3800C642EF /* New Group */,
 				EAFDFAAF22BA72D400533F27 /* Assets.xcassets */,
 				EAFDFAB422BA72D400533F27 /* Info.plist */,
+				EA85BAAA24EEBEEC000DF545 /* Picturegram-Bridging-Header.h */,
+				EA85BAAB24EEBEEC000DF545 /* SettingsTableViewController.h */,
+				EA85BAAC24EEBEEC000DF545 /* SettingsTableViewController.m */,
 			);
 			path = Picturegram;
 			sourceTree = "<group>";
@@ -121,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAFDFAB722BA72D400533F27 /* Build configuration list for PBXNativeTarget "Picturegram" */;
 			buildPhases = (
+				904643E1D9B2C48F93CE76B9 /* [CP] Check Pods Manifest.lock */,
 				EAFDFA9E22BA72D200533F27 /* Sources */,
 				EAFDFA9F22BA72D200533F27 /* Frameworks */,
 				EAFDFAA022BA72D200533F27 /* Resources */,
+				F47E65AD8DFF257B494729AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,11 +224,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Александр Сибирцев";
 				TargetAttributes = {
 					EAFDFAA122BA72D200533F27 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1160;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -177,16 +261,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAD23C9122E825C900EE211A /* OpenSans-Semibold.ttf in Resources */,
+				EA85BAE624F0E0F5000DF545 /* OpenSans-Semibold.ttf in Resources */,
+				EA85BAEB24F0E0F5000DF545 /* OpenSans-ExtraBold.ttf in Resources */,
 				EAFDFAB322BA72D400533F27 /* LaunchScreen.storyboard in Resources */,
 				EAFDFAB022BA72D400533F27 /* Assets.xcassets in Resources */,
-				EAD23C9222E825C900EE211A /* OpenSans-Light.ttf in Resources */,
-				EAD23C9322E825C900EE211A /* OpenSans-Regular.ttf in Resources */,
+				EA85BAED24F0E0F5000DF545 /* OpenSans-Italic.ttf in Resources */,
+				EA85BAE724F0E0F5000DF545 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				EA85BAE424F0E0F5000DF545 /* OpenSans-Regular.ttf in Resources */,
+				EA85BAEC24F0E0F5000DF545 /* OpenSans-Light.ttf in Resources */,
+				EA85BAE524F0E0F5000DF545 /* OpenSans-Bold.ttf in Resources */,
+				EA85BAE824F0E0F5000DF545 /* OpenSans-BoldItalic.ttf in Resources */,
+				EA85BAEA24F0E0F5000DF545 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				EAFDFAAB22BA72D200533F27 /* Main.storyboard in Resources */,
+				EA85BAE924F0E0F5000DF545 /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		904643E1D9B2C48F93CE76B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Picturegram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F47E65AD8DFF257B494729AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Picturegram/Pods-Picturegram-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Picturegram/Pods-Picturegram-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Picturegram/Pods-Picturegram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EAFDFA9E22BA72D200533F27 /* Sources */ = {
@@ -194,15 +327,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAFDFAAE22BA72D200533F27 /* Picturegram.xcdatamodeld in Sources */,
+				EA37000A25372A7100C139A8 /* ReachabilityManager.swift in Sources */,
+				EA85BAD924F0CE76000DF545 /* AudioTrack.swift in Sources */,
 				EAFDFABB22BA73FE00533F27 /* TableViewCell.swift in Sources */,
-				EAFDFABD22BA759100533F27 /* ViewControllerImage.swift in Sources */,
+				EA85BAA024EEBDDE000DF545 /* MarqueeLabel.swift in Sources */,
 				EAFDFAC322BBBC8D00533F27 /* AlertDialog.swift in Sources */,
 				EAFDFAA822BA72D200533F27 /* ViewController.swift in Sources */,
+				EA85BA9E24EEBD69000DF545 /* RxViewControllerPlayer.swift in Sources */,
+				EA85BA9C24EEBD45000DF545 /* RxAudioMusicPlayer.swift in Sources */,
+				EA85BAA724EEBE4A000DF545 /* PlaybackRateAction.swift in Sources */,
+				EA85BAA624EEBE4A000DF545 /* Wireframe.swift in Sources */,
 				EAFDFAA622BA72D200533F27 /* AppDelegate.swift in Sources */,
-				EA72813B22CDF78C00C642EF /* TestInternetConnection .swift in Sources */,
-				EAFDFAC522BBE70B00533F27 /* PersistenceServce.swift in Sources */,
-				EAF58C1022F420F9007E51DD /* ViewControllerPopover.swift in Sources */,
+				EAC5603A253891CE00A5DF67 /* OfflineViewController.swift in Sources */,
+				EA37001625372C6300C139A8 /* ParseableProtocol.swift in Sources */,
+				EA85BAAD24EEBEED000DF545 /* SettingsTableViewController.m in Sources */,
 				EA72814022CF3FB800C642EF /* UserInfoImage.swift in Sources */,
+				EA85BAA824EEBE4A000DF545 /* ProgressSlider+Rx.swift in Sources */,
+				EA85BAA924EEBE4A000DF545 /* ProgressSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +395,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -315,6 +457,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -346,37 +489,50 @@
 		};
 		EAFDFAB822BA72D400533F27 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD9E51F83D3E541F7DC19D46 /* Pods-Picturegram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = GMQ8P83Z92;
 				INFOPLIST_FILE = Picturegram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexaner-Sibirtsev.Picturegram";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Picturegram/Picturegram-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		EAFDFAB922BA72D400533F27 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13FF70B21BED2EE664CD5161 /* Pods-Picturegram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = GMQ8P83Z92;
 				INFOPLIST_FILE = Picturegram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexaner-Sibirtsev.Picturegram";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Picturegram/Picturegram-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
